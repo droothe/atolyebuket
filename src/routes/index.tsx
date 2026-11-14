@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Menu, X, Crown, Truck, MapPin, Phone, MessageCircle, Instagram, Sparkles, LayoutDashboard, Check } from "lucide-react";
+import { Menu, X, Crown, Truck, MapPin, Phone, Mail, MessageCircle, Instagram, Sparkles, LayoutDashboard, Check } from "lucide-react";
 import roses from "@/assets/roses.jpg";
 import { categories } from "@/lib/catalog";
 import { addOrder } from "@/lib/orders";
@@ -13,19 +13,21 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Büşra’nın Renkli Tasarımları — Elazığ Söz & Nişan Hediyelikleri" },
-      { name: "description", content: "İsteme çiçeği, isimli nişan çikolatası, gelin buketi, bebek magneti ve isimlikler. Elazığ içi aynı gün teslimat, Türkiye geneli kargo." },
-      { property: "og:title", content: "Büşra’nın Renkli Tasarımları" },
-      { property: "og:description", content: "En özel günlerinize kişiye özel, el emeği tasarımlar. Elazığ." },
+      { title: "Atölye Buket — Çiçek & Organizasyon Tasarımı" },
+      { name: "description", content: "İsteme çiçeği, isimli nişan çikolatası, gelin buketi, bebek magneti ve isimlikler. Şehir içi aynı gün teslimat ve Türkiye geneli kargo." },
+      { property: "og:title", content: "Atölye Buket — Çiçek & Organizasyon Tasarımı" },
+      { property: "og:description", content: "En özel günlerinize kişiye özel, el emeği çiçek ve organizasyon tasarımları." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 });
 
-const PHONE = "05313910653";
-const WA = "https://wa.me/905313910653";
-const IG = "https://ig.me/m/busrann_renkli_tasarimlari";
+const PHONE = "+905000000000";
+const PHONE_LABEL = "0500 000 00 00";
+const EMAIL = "info@atolyebuket.com";
+const WA = "https://wa.me/905000000000";
+const IG = "https://instagram.com/atolyebuketdemo";
 
 const nav = [
   { href: "#koleksiyonlar", label: "Koleksiyonlar" },
@@ -39,7 +41,7 @@ const schema = z.object({
   phone: z.string().trim().regex(/^[0-9 +()-]{10,18}$/, "Geçerli bir telefon girin"),
   product: z.string().min(1, "Ürün grubu seçin"),
   note: z.string().trim().max(500),
-  city: z.enum(["Elazığ", "Diğer"]),
+  city: z.enum(["Şehir İçi", "Diğer"]),
 });
 
 function Index() {
@@ -75,8 +77,8 @@ function Index() {
           <a href="#" className="flex min-w-0 items-center gap-2.5">
             <img src="/favicon.svg" alt="" className="h-10 w-10 shrink-0" />
             <span className="min-w-0 leading-tight">
-              <span className="block truncate font-script text-2xl text-gold-deep">Büşra’nın</span>
-              <span className="block truncate text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Renkli Tasarımları</span>
+              <span className="block truncate font-script text-2xl text-gold-deep">Atölye Buket</span>
+              <span className="block truncate text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Çiçek & Organizasyon Tasarımı</span>
             </span>
           </a>
           <nav className="hidden items-center gap-8 lg:flex">
@@ -112,7 +114,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:pb-24">
           <div className="text-center lg:text-left">
             <p className="hero-enter hero-delay-1 inline-flex items-center gap-2 rounded-full border border-gold/50 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-gold-deep">
-              <Crown className="h-3.5 w-3.5" /> El Emeği · Elazığ
+              <Crown className="h-3.5 w-3.5" /> El Emeği · Çiçek & Organizasyon
             </p>
             <h1 className="hero-enter hero-delay-2 mt-6 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl xl:text-7xl">
               En Özel Günlerinize <span className="italic text-gold-gradient">Renk Katacak</span> Kişiye Özel Tasarımlar
@@ -122,7 +124,7 @@ function Index() {
             </p>
             <div className="hero-enter hero-delay-4 mx-auto mt-6 flex max-w-md items-center gap-3 rounded-2xl border border-gold/40 bg-card p-4 text-left shadow-luxe lg:mx-0">
               <Truck className="h-6 w-6 shrink-0 text-gold-deep" />
-              <p className="text-sm font-medium">Elazığ İçi Aynı Gün Teslimat & Türkiye Genelinde Kargo</p>
+              <p className="text-sm font-medium">Şehir İçi Aynı Gün Teslimat & Türkiye Geneli Kargo</p>
             </div>
             <div className="hero-enter hero-delay-5 mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
               <a href="#koleksiyonlar" className="motion-button rounded-full bg-primary px-8 py-4 text-center font-medium text-primary-foreground transition hover:-translate-y-0.5">Koleksiyonu İncele</a>
@@ -173,7 +175,7 @@ function Index() {
             {[
               ["01", "Fikrinizi anlatın", "Ürün, renk, isim ve tarih bilgilerinizi formdan iletin."],
               ["02", "Tasarımı onaylayın", "Size özel taslağı ve fiyatı WhatsApp’tan paylaşalım."],
-              ["03", "Teslim alın", "Elazığ’a aynı gün, Türkiye geneline özenli kargo."],
+              ["03", "Teslim alın", "Şehir içinde aynı gün, Türkiye geneline özenli kargo."],
             ].map(([n, t, d], i) => (
               <Reveal key={n} delayMs={i * 90}>
                 <div className="h-full rounded-2xl border border-gold/30 p-6">
@@ -203,12 +205,12 @@ function Index() {
                 </select>
               </Field>
               <Field label="Özel İsim / Tarih Notu" full>
-                <textarea name="note" rows={3} maxLength={500} className={inputCls} placeholder="Örn: Kübra & Fatih – 16.10.2026, 50 adet" />
+                <textarea name="note" rows={3} maxLength={500} className={inputCls} placeholder="Örn: İsimler, tarih ve adet bilgisi" />
               </Field>
               <fieldset className="sm:col-span-2">
                 <legend className="mb-2 text-sm font-medium">Teslimat Şehri</legend>
                 <div className="grid grid-cols-2 gap-3">
-                  {["Elazığ", "Diğer"].map((c, i) => (
+                  {["Şehir İçi", "Diğer"].map((c, i) => (
                     <label key={c} className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-input bg-background py-3 text-sm has-[:checked]:border-gold has-[:checked]:bg-gold/15">
                       <input type="radio" name="city" value={c} defaultChecked={i === 0} className="accent-[var(--gold-deep)]" /> {c === "Diğer" ? "Diğer Şehir" : c}
                     </label>
@@ -228,19 +230,21 @@ function Index() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <Reveal><SectionTitle kicker="İletişim" title="Bize Ulaşın" /></Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <Reveal><div className="flex h-full items-center gap-4 rounded-2xl border border-gold/30 bg-background p-5"><MapPin className="h-6 w-6 shrink-0 text-gold-deep" /><div><p className="text-xs uppercase tracking-widest text-muted-foreground">Şehir</p><p className="font-serif text-2xl">Elazığ</p></div></div></Reveal>
-            <Reveal delayMs={80}><a href={`tel:${PHONE}`} className="motion-button flex h-full items-center gap-4 rounded-2xl border border-gold/30 bg-background p-5"><Phone className="h-6 w-6 shrink-0 text-gold-deep" /><div><p className="text-xs uppercase tracking-widest text-muted-foreground">Telefon</p><p className="font-serif text-2xl">0531 391 06 53</p></div></a></Reveal>
+            <Reveal><div className="flex h-full items-center gap-4 rounded-2xl border border-gold/30 bg-background p-5"><MapPin className="h-6 w-6 shrink-0 text-gold-deep" /><div><p className="text-xs uppercase tracking-widest text-muted-foreground">Adres</p><p className="font-serif text-xl">Örnek Mah. Çiçek Sok. No: 12, Merkez</p></div></div></Reveal>
+            <Reveal delayMs={80}><a href={`tel:${PHONE}`} className="motion-button flex h-full items-center gap-4 rounded-2xl border border-gold/30 bg-background p-5"><Phone className="h-6 w-6 shrink-0 text-gold-deep" /><div><p className="text-xs uppercase tracking-widest text-muted-foreground">Telefon</p><p className="font-serif text-2xl">{PHONE_LABEL}</p></div></a></Reveal>
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <Reveal><a href={WA} target="_blank" rel="noreferrer" className="motion-button flex items-center justify-center gap-2 rounded-full bg-primary py-4 font-medium text-primary-foreground"><MessageCircle className="h-5 w-5" /> WhatsApp’tan Hızlı Yaz</a></Reveal>
-            <Reveal delayMs={80}><a href={IG} target="_blank" rel="noreferrer" className="motion-button flex items-center justify-center gap-2 rounded-full bg-gold-gradient py-4 font-medium text-primary"><Instagram className="h-5 w-5" /> Instagram Direct</a></Reveal>
+            <Reveal delayMs={80}><a href={IG} target="_blank" rel="noreferrer" className="motion-button flex items-center justify-center gap-2 rounded-full bg-gold-gradient py-4 font-medium text-primary"><Instagram className="h-5 w-5" /> @atolyebuketdemo</a></Reveal>
+            <Reveal><a href={`mailto:${EMAIL}`} className="motion-button flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-background py-4 font-medium"><Mail className="h-5 w-5 text-gold-deep" /> {EMAIL}</a></Reveal>
           </div>
         </div>
       </section>
 
       <footer className="bg-primary py-10 text-center text-primary-foreground">
-        <p className="font-script text-3xl text-gold">Büşra’nın Renkli Tasarımları</p>
-        <p className="mt-2 text-xs opacity-60">© 2026 Büşra Özkan · Elazığ</p>
+        <p className="font-script text-3xl text-gold">Atölye Buket</p>
+        <p className="mt-1 text-xs opacity-75">Çiçek & Organizasyon Tasarımı</p>
+        <p className="mt-2 text-xs opacity-60">© 2026 Atölye Buket · Demo Vitrin</p>
       </footer>
 
       <AdminPanel open={admin} onOpenChange={setAdmin} />
@@ -252,7 +256,7 @@ function Index() {
             </span>
             <DialogTitle className="font-serif text-3xl">Talebiniz alındı</DialogTitle>
             <DialogDescription className="text-base">
-              Büşra Hanım en kısa sürede sizinle iletişime geçecek. İlginiz için teşekkür ederiz.
+              Atölye Buket ekibimiz en kısa sürede sizinle iletişime geçecek. İlginiz için teşekkür ederiz.
             </DialogDescription>
           </DialogHeader>
           <DialogClose className="motion-button mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground shadow-luxe transition">

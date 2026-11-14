@@ -30,7 +30,7 @@ export function AdminPanel({ open, onOpenChange }: { open: boolean; onOpenChange
       <DialogContent className="max-h-[92vh] w-[calc(100vw-1.5rem)] max-w-4xl overflow-y-auto border-gold/40 bg-card p-4 sm:p-8">
         <DialogHeader className="text-left">
           <p className="text-xs uppercase tracking-[0.3em] text-gold-deep">Yönetim Paneli · Demo</p>
-          <DialogTitle className="font-serif text-3xl">Hoş geldiniz, Büşra Hanım</DialogTitle>
+          <DialogTitle className="font-serif text-3xl">Atölye Buket Yönetimi</DialogTitle>
           <DialogDescription>Gelen tasarım talepleri, müşteri notları ve teslimat durumları.</DialogDescription>
         </DialogHeader>
 
